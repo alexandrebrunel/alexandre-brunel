@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alexandre Brunel  Digital Marketing Portfolio</title>
+  <title data-fr="Alexandre Brunel, portfolio marketing digital">Alexandre Brunel  Digital Marketing Portfolio</title>
   <meta name="description" content="Alexandre Brunel, digital marketer in Paris: Google Ads, SEO and B2B lead generation, shown with real results and screenshots. Available immediately.">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#ffffff">
@@ -21,7 +21,22 @@
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="preload" href="fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    (function (d) {
+      d.classList.add('js');
+      var lang = 'en';
+      try {
+        var asked = new URLSearchParams(location.search).get('lang');
+        lang = asked === 'fr' || asked === 'en' ? asked : (localStorage.getItem('lang') || 'en');
+      } catch (e) {}
+      if (lang === 'fr') {
+        d.lang = 'fr';
+        d.classList.add('is-translating');
+        setTimeout(function () { d.classList.remove('is-translating'); }, 2500);
+      }
+    })(document.documentElement);
+  </script>
+  <script src="js/lang.js" defer></script>
   <script src="js/main.js" defer></script>
   <script type="application/ld+json">
   {
@@ -38,16 +53,20 @@
   </script>
 </head>
 <body>
-  <a class="skip" href="#work">Skip to the work</a>
+  <a class="skip" href="#work" data-fr="Aller aux projets">Skip to the work</a>
 
   <header class="topbar">
     <div class="wrap topbar__inner">
       <a class="topbar__name" href="#top">Alexandre Brunel</a>
       <nav class="topbar__nav" aria-label="Sections">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
+        <a href="#work" data-fr="Projets">Work</a>
+        <a href="#about" data-fr="À propos">About</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="lang" role="group" aria-label="Language" data-fr-aria-label="Langue">
+        <button class="lang__btn" type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+        <button class="lang__btn" type="button" data-lang="fr" lang="fr" aria-label="Français" aria-pressed="false">FR</button>
+      </div>
     </div>
   </header>
 
@@ -56,26 +75,26 @@
       <div class="wrap hero__grid">
         <div class="hero__text">
           <h1 class="hero__name" id="hero-title">Alexandre Brunel</h1>
-          <p class="hero__role"><span class="hero__part">Digital Marketing</span> <span class="hero__sep" aria-hidden="true"></span><span class="sr-only">,</span> <span class="hero__part">Google Ads, SEO &amp; B2B Lead Generation</span></p>
-          <p class="hero__intro">Five years in digital marketing, from search campaigns and SEO to B2B content and lead generation. Most recently, on a Google client project, I audited and restructured Google Ads accounts for more than 100 advertisers in 5&nbsp;countries.</p>
-          <ul class="hero__facts" aria-label="Key facts">
+          <p class="hero__role"><span class="hero__part" data-fr="Marketing digital">Digital Marketing</span> <span class="hero__sep" aria-hidden="true"></span><span class="sr-only">,</span> <span class="hero__part" data-fr="Google Ads, SEO et génération de leads&nbsp;B2B">Google Ads, SEO &amp; B2B Lead Generation</span></p>
+          <p class="hero__intro" data-fr="Cinq ans d’expérience en marketing digital, des campagnes Search et du SEO au contenu B2B et à la génération de leads. Plus récemment, sur un projet client Google, j’ai audité et restructuré les comptes Google Ads de plus de 100 annonceurs dans cinq pays.">Five years in digital marketing, from search campaigns and SEO to B2B content and lead generation. Most recently, on a Google client project, I audited and restructured Google Ads accounts for more than 100 advertisers in 5&nbsp;countries.</p>
+          <ul class="hero__facts" aria-label="Key facts" data-fr-aria-label="En bref">
             <li>Paris, France</li>
-            <li><strong>Available immediately</strong></li>
-            <li>French, English, Spanish</li>
+            <li><strong data-fr="Disponible immédiatement">Available immediately</strong></li>
+            <li data-fr="Français, anglais, espagnol">French, English, Spanish</li>
           </ul>
           <div class="hero__actions">
-            <a class="btn btn--solid" href="#work">See my work</a>
-            <a class="btn btn--outline" href="#contact">Contact me</a>
+            <a class="btn btn--solid" href="#work" data-fr="Voir mes projets">See my work</a>
+            <a class="btn btn--outline" href="#contact" data-fr="Me contacter">Contact me</a>
           </div>
         </div>
-        <img class="hero__portrait" src="images/portrait.jpg" width="533" height="666" alt="Portrait of Alexandre Brunel" fetchpriority="high">
+        <img class="hero__portrait" src="images/portrait.jpg" width="533" height="666" alt="Portrait of Alexandre Brunel" data-fr-alt="Portrait d’Alexandre Brunel" fetchpriority="high">
       </div>
 
       <div class="wrap">
-        <ul class="index" aria-label="Work on this page">
-          <li><a href="#google"><strong>Google client project</strong><span>AI Max audit, Brand Search relaunch</span></a></li>
-          <li><a href="#freelance"><strong>Freelance</strong><span>SEO growth, ad copy rated Excellent</span></a></li>
-          <li><a href="#getzem"><strong>Getzem Secure</strong><span>Spanish sales deck, promo video</span></a></li>
+        <ul class="index" aria-label="Work on this page" data-fr-aria-label="Projets présentés">
+          <li><a href="#google"><strong data-fr="Projet client Google">Google client project</strong><span data-fr="Audit AI Max, relance d’un compte Brand&nbsp;Search">AI Max audit, Brand Search relaunch</span></a></li>
+          <li><a href="#freelance"><strong>Freelance</strong><span data-fr="Croissance SEO, annonces notées «&nbsp;Excellente&nbsp;»">SEO growth, ad copy rated Excellent</span></a></li>
+          <li><a href="#getzem"><strong>Getzem Secure</strong><span data-fr="Présentation commerciale en espagnol, vidéo promotionnelle">Spanish sales deck, promo video</span></a></li>
         </ul>
       </div>
     </section>
@@ -83,52 +102,52 @@
     <section class="section" id="work" aria-labelledby="work-title">
       <div class="wrap">
         <div class="section__head">
-          <h2 class="section__title" id="work-title">Work</h2>
-          <p class="section__intro">Screenshots from real accounts, with advertiser names, keywords and URLs blurred. The yellow marks show where to look. Open any screenshot to see it full size.</p>
+          <h2 class="section__title" id="work-title" data-fr="Projets">Work</h2>
+          <p class="section__intro" data-fr="Captures d’écran issues de comptes réels, avec les noms d’annonceurs, les mots-clés et les URL floutés. Les surlignages jaunes indiquent où regarder. Ouvrez une capture pour l’afficher en grand.">Screenshots from real accounts, with advertiser names, keywords and URLs blurred. The yellow marks show where to look. Open any screenshot to see it full size.</p>
         </div>
 
         <!-- ============ Google client project ============ -->
         <article class="chapter" id="google" aria-labelledby="google-title">
           <header class="chapter__head">
-            <h3 class="chapter__title" id="google-title"><img class="chapter__logo" src="images/logo-google.png" width="120" height="120" alt="">Google client project</h3>
+            <h3 class="chapter__title" id="google-title"><img class="chapter__logo" src="images/logo-google.png" width="120" height="120" alt=""><span data-fr="Projet client Google">Google client project</span></h3>
             <div class="role">
               <p class="role__title">Marketing Optimization Specialist</p>
-              <p class="role__dates">Aug 2025 – Aug 2026</p>
-              <p class="role__org">Cognizant, Lisbon | Client: Google (Google Ads advertiser optimisation)</p>
+              <p class="role__dates" data-fr="août 2025 – août 2026">Aug 2025 – Aug 2026</p>
+              <p class="role__org" data-fr="Cognizant, Lisbonne | Client&nbsp;: Google (optimisation des comptes d’annonceurs Google Ads)">Cognizant, Lisbon | Client: Google (Google Ads advertiser optimisation)</p>
             </div>
-            <p class="chapter__intro">I audited Google Ads accounts with Google account managers, then walked advertisers through the changes in French and English. Markets: France, Spain, the Netherlands, Portugal and the US.</p>
+            <p class="chapter__intro" data-fr="J’ai audité des comptes Google Ads avec les account managers de Google, puis expliqué pas à pas les changements aux annonceurs, en français et en anglais. Marchés&nbsp;: France, Espagne, Pays-Bas, Portugal et États-Unis.">I audited Google Ads accounts with Google account managers, then walked advertisers through the changes in French and English. Markets: France, Spain, the Netherlands, Portugal and the US.</p>
           </header>
 
           <section class="case" aria-labelledby="case-aimax" data-scope>
             <div class="case__text">
-              <h4 class="case__title" id="case-aimax">AI Max for Search: 30 days before and after</h4>
+              <h4 class="case__title" id="case-aimax" data-fr="AI Max pour le Réseau de Recherche&nbsp;: 30 jours avant et après">AI Max for Search: 30 days before and after</h4>
               <dl class="case__facts">
-                <div><dt>Account</dt><dd>Search, about €56k a month</dd></div>
-                <div><dt>My part</dt><dd>Setup and report</dd></div>
-                <div><dt>Year</dt><dd>2026</dd></div>
+                <div><dt data-fr="Compte">Account</dt><dd data-fr="Search, environ 56&nbsp;k€ par mois">Search, about €56k a month</dd></div>
+                <div><dt data-fr="Mon rôle">My part</dt><dd data-fr="Mise en place et reporting">Setup and report</dd></div>
+                <div><dt data-fr="Année">Year</dt><dd>2026</dd></div>
               </dl>
-              <p>I switched on AI Max for Search across this advertiser's Search campaigns, then compared the 30 days before and after and presented the results to them.</p>
-              <p>Conversions rose 60% while cost per conversion rose 9%. The extra €41k of spend brought 1,182 more conversions at €34.90 each, or about €5.20 of conversion value for every extra euro.</p>
+              <p data-fr="J’ai activé AI Max sur l’ensemble des campagnes Search de cet annonceur, puis j’ai comparé les 30 jours avant et après l’activation et lui ai présenté les résultats.">I switched on AI Max for Search across this advertiser's Search campaigns, then compared the 30 days before and after and presented the results to them.</p>
+              <p data-fr="Les conversions ont augmenté de 60&nbsp;%, pour un coût par conversion en hausse de 9&nbsp;%. Les 41&nbsp;k€ de dépenses supplémentaires ont apporté 1&nbsp;182 conversions de plus, à 34,90&nbsp;€ chacune, soit environ 5,20&nbsp;€ de valeur de conversion pour chaque euro supplémentaire.">Conversions rose 60% while cost per conversion rose 9%. The extra €41k of spend brought 1,182 more conversions at €34.90 each, or about €5.20 of conversion value for every extra euro.</p>
             </div>
             <div class="case__evidence">
               <figure class="evidence">
                 <div class="shot">
-                  <button class="shot__btn" type="button" data-zoom data-caption="The report slide I presented to the advertiser.">
-                    <img src="images/ai-max.png" width="982" height="542" loading="lazy" decoding="async" alt="Report slide comparing the 30 days before and after AI Max: cost, impressions, clicks, conversions, cost per acquisition and conversion value.">
-                    <span class="sr-only">Open full size</span>
+                  <button class="shot__btn" type="button" data-zoom data-caption="The report slide I presented to the advertiser." data-fr-caption="La diapositive de résultats que j’ai présentée à l’annonceur.">
+                    <img src="images/ai-max.png" width="982" height="542" loading="lazy" decoding="async" alt="Report slide comparing the 30 days before and after AI Max: cost, impressions, clicks, conversions, cost per acquisition and conversion value." data-fr-alt="Diapositive de résultats comparant les 30 jours avant et après l’activation d’AI Max&nbsp;: coût, impressions, clics, conversions, coût par acquisition et valeur de conversion.">
+                    <span class="sr-only" data-fr="Afficher en grand">Open full size</span>
                   </button>
                   <span class="mark" data-mark="1" style="--x:5.91%;--y:47.23%;--w:92.87%;--h:7.2%" aria-hidden="true"><span class="mark__n">1</span></span>
                   <span class="mark" data-mark="2" style="--x:5.91%;--y:70.3%;--w:92.87%;--h:7%" aria-hidden="true"><span class="mark__n">2</span></span>
                   <span class="mark" data-mark="3" style="--x:5.91%;--y:77.86%;--w:92.87%;--h:7.2%;--bx:100%;--by:50%" aria-hidden="true"><span class="mark__n">3</span></span>
                 </div>
-                <figcaption class="evidence__bar"><span>The report slide I presented to the advertiser</span><span class="evidence__hint" aria-hidden="true">Full size</span></figcaption>
+                <figcaption class="evidence__bar"><span data-fr="La diapositive de résultats que j’ai présentée à l’annonceur">The report slide I presented to the advertiser</span><span class="evidence__hint" aria-hidden="true" data-fr="Agrandir">Full size</span></figcaption>
               </figure>
               <div class="look">
-                <h5 class="look__title">What to look for</h5>
+                <h5 class="look__title" data-fr="À observer">What to look for</h5>
                 <ol class="look__list" role="list" data-look>
-                  <li data-mark="1">Spend went from €56,159 to €97,416 (+73%), as the ads showed in 53% more searches.</li>
-                  <li data-mark="2">Conversions went from 1,982 to 3,164 (+60%).</li>
-                  <li data-mark="3">Cost per conversion went from €28.34 to €30.79 (+9%).</li>
+                  <li data-mark="1" data-fr="Les dépenses sont passées de 56&nbsp;159&nbsp;€ à 97&nbsp;416&nbsp;€ (+73&nbsp;%), les annonces ayant été diffusées sur 53&nbsp;% de recherches en plus.">Spend went from €56,159 to €97,416 (+73%), as the ads showed in 53% more searches.</li>
+                  <li data-mark="2" data-fr="Les conversions sont passées de 1&nbsp;982 à 3&nbsp;164 (+60&nbsp;%).">Conversions went from 1,982 to 3,164 (+60%).</li>
+                  <li data-mark="3" data-fr="Le coût par conversion est passé de 28,34&nbsp;€ à 30,79&nbsp;€ (+9&nbsp;%).">Cost per conversion went from €28.34 to €30.79 (+9%).</li>
                 </ol>
               </div>
             </div>
@@ -136,66 +155,66 @@
 
           <section class="case" aria-labelledby="case-relaunch">
             <div class="case__text">
-              <h4 class="case__title" id="case-relaunch">Brand Search account relaunch</h4>
+              <h4 class="case__title" id="case-relaunch" data-fr="Relance d’un compte Brand&nbsp;Search">Brand Search account relaunch</h4>
               <dl class="case__facts">
-                <div><dt>Channel</dt><dd>Google Ads, Search</dd></div>
-                <div><dt>My part</dt><dd>Audit and rebuild</dd></div>
-                <div><dt>Before</dt><dd>January 2026</dd></div>
-                <div><dt>After</dt><dd>27 April – 26 May 2026</dd></div>
+                <div><dt data-fr="Canal">Channel</dt><dd>Google Ads, Search</dd></div>
+                <div><dt data-fr="Mon rôle">My part</dt><dd data-fr="Audit et refonte">Audit and rebuild</dd></div>
+                <div><dt data-fr="Avant">Before</dt><dd data-fr="janvier 2026">January 2026</dd></div>
+                <div><dt data-fr="Après">After</dt><dd data-fr="27 avril – 26 mai 2026">27 April – 26 May 2026</dd></div>
               </dl>
-              <p>The advertiser's brand keywords were switched on but getting no impressions at all. I audited the account, then added more relevant keywords and reworked the ads, assets and landing-page content for each ad group.</p>
-              <p>The account started serving again in mid-May. By 26 May it had brought in 72 conversions at about €18 each, on €1.3k of spend.</p>
+              <p data-fr="Les mots-clés de marque de l’annonceur étaient actifs, mais n’obtenaient aucune impression. J’ai audité le compte, puis ajouté des mots-clés plus pertinents et retravaillé les annonces, les composants et le contenu des pages de destination de chaque groupe d’annonces.">The advertiser's brand keywords were switched on but getting no impressions at all. I audited the account, then added more relevant keywords and reworked the ads, assets and landing-page content for each ad group.</p>
+              <p data-fr="Les annonces ont recommencé à être diffusées à la mi-mai. Au 26 mai, il avait généré 72 conversions à environ 18&nbsp;€ chacune, pour 1,3&nbsp;k€ de dépenses.">The account started serving again in mid-May. By 26 May it had brought in 72 conversions at about €18 each, on €1.3k of spend.</p>
             </div>
             <div class="case__evidence tabs" data-tabs>
-              <div class="tabs__list" role="tablist" aria-label="Account state">
-                <button class="tab" type="button" role="tab" id="tab-before" aria-controls="panel-before" aria-selected="false" tabindex="-1">Before</button>
-                <button class="tab" type="button" role="tab" id="tab-after" aria-controls="panel-after" aria-selected="true">After</button>
+              <div class="tabs__list" role="tablist" aria-label="Account state" data-fr-aria-label="État du compte">
+                <button class="tab" type="button" role="tab" id="tab-before" aria-controls="panel-before" aria-selected="false" tabindex="-1" data-fr="Avant">Before</button>
+                <button class="tab" type="button" role="tab" id="tab-after" aria-controls="panel-after" aria-selected="true" data-fr="Après">After</button>
               </div>
 
               <div class="tabs__panel" role="tabpanel" id="panel-before" aria-labelledby="tab-before" data-scope>
-                <h5 class="tabs__fallback">Before, January 2026</h5>
+                <h5 class="tabs__fallback" data-fr="Avant, janvier 2026">Before, January 2026</h5>
                 <figure class="evidence">
                   <div class="shot">
-                    <button class="shot__btn" type="button" data-zoom data-caption="Keywords view, 1 January to 1 February 2026. Keywords are blurred.">
-                      <img src="images/before-launch.png" width="1101" height="485" loading="lazy" decoding="async" alt="Google Ads keywords view for January 2026: no clicks and no impressions, Quality Scores between 2/10 and 6/10.">
-                      <span class="sr-only">Open full size</span>
+                    <button class="shot__btn" type="button" data-zoom data-caption="Keywords view, 1 January to 1 February 2026. Keywords are blurred." data-fr-caption="Vue des mots-clés, du 1er janvier au 1er février 2026. Les mots-clés sont floutés.">
+                      <img src="images/before-launch.png" width="1101" height="485" loading="lazy" decoding="async" alt="Google Ads keywords view for January 2026: no clicks and no impressions, Quality Scores between 2/10 and 6/10." data-fr-alt="Vue des mots-clés Google Ads pour janvier 2026&nbsp;: aucun clic ni aucune impression, niveaux de qualité entre 2/10 et 6/10.">
+                      <span class="sr-only" data-fr="Afficher en grand">Open full size</span>
                     </button>
                     <span class="mark" data-mark="1" style="--x:4.54%;--y:27.01%;--w:92.64%;--h:3.71%;--bx:50%" aria-hidden="true"><span class="mark__n">1</span></span>
                     <span class="mark" data-mark="2" style="--x:66.94%;--y:42.47%;--w:2.54%;--h:56.91%;--bx:50%;--ty:-115%" aria-hidden="true"><span class="mark__n">2</span></span>
                     <span class="mark" data-mark="3" style="--x:44.87%;--y:85.57%;--w:11.81%;--h:6.6%" aria-hidden="true"><span class="mark__n">3</span></span>
                   </div>
-                  <figcaption class="evidence__bar"><span>Google Ads keywords view, January 2026</span><span class="evidence__hint" aria-hidden="true">Full size</span></figcaption>
+                  <figcaption class="evidence__bar"><span data-fr="Vue des mots-clés Google Ads, janvier 2026">Google Ads keywords view, January 2026</span><span class="evidence__hint" aria-hidden="true" data-fr="Agrandir">Full size</span></figcaption>
                 </figure>
                 <div class="look">
-                  <h5 class="look__title">What to look for</h5>
+                  <h5 class="look__title" data-fr="À observer">What to look for</h5>
                   <ol class="look__list" role="list" data-look>
-                    <li data-mark="1">Clicks: flat at zero for the whole month.</li>
-                    <li data-mark="2">Impressions: 0 on every keyword.</li>
-                    <li data-mark="3">Quality Score down to 2/10, with landing page and expected CTR both below average.</li>
+                    <li data-mark="1" data-fr="Clics&nbsp;: à zéro pendant tout le mois.">Clicks: flat at zero for the whole month.</li>
+                    <li data-mark="2" data-fr="Impressions&nbsp;: 0 sur chaque mot-clé.">Impressions: 0 on every keyword.</li>
+                    <li data-mark="3" data-fr="Niveau de qualité (Quality Score) descendant jusqu’à 2/10, avec une expérience sur la page de destination et un taux de clics attendu tous deux inférieurs à la moyenne.">Quality Score down to 2/10, with landing page and expected CTR both below average.</li>
                   </ol>
                 </div>
               </div>
 
               <div class="tabs__panel" role="tabpanel" id="panel-after" aria-labelledby="tab-after" data-scope>
-                <h5 class="tabs__fallback">After, 27 April – 26 May 2026</h5>
+                <h5 class="tabs__fallback" data-fr="Après, du 27 avril au 26 mai 2026">After, 27 April – 26 May 2026</h5>
                 <figure class="evidence">
                   <div class="shot">
-                    <button class="shot__btn" type="button" data-zoom data-caption="Keywords view, 27 April to 26 May 2026. Keywords are blurred.">
-                      <img src="images/after-launch.png" width="1020" height="514" loading="lazy" decoding="async" alt="Google Ads keywords view for 27 April to 26 May 2026: clicks rising from mid-May, Quality Score 10/10 on the top keywords, conversions on most keywords.">
-                      <span class="sr-only">Open full size</span>
+                    <button class="shot__btn" type="button" data-zoom data-caption="Keywords view, 27 April to 26 May 2026. Keywords are blurred." data-fr-caption="Vue des mots-clés, du 27 avril au 26 mai 2026. Les mots-clés sont floutés.">
+                      <img src="images/after-launch.png" width="1020" height="514" loading="lazy" decoding="async" alt="Google Ads keywords view for 27 April to 26 May 2026: clicks rising from mid-May, Quality Score 10/10 on the top keywords, conversions on most keywords." data-fr-alt="Vue des mots-clés Google Ads du 27 avril au 26 mai 2026&nbsp;: clics en hausse à partir de la mi-mai, niveau de qualité de 10/10 sur les principaux mots-clés, conversions sur la plupart des mots-clés.">
+                      <span class="sr-only" data-fr="Afficher en grand">Open full size</span>
                     </button>
                     <span class="mark" data-mark="1" style="--x:71.57%;--y:10.12%;--w:27.06%;--h:14.79%" aria-hidden="true"><span class="mark__n">1</span></span>
                     <span class="mark" data-mark="2" style="--x:44.71%;--y:42.8%;--w:18.24%;--h:11.87%;--bx:100%;--by:50%" aria-hidden="true"><span class="mark__n">2</span></span>
                     <span class="mark" data-mark="3" style="--x:85.69%;--y:43%;--w:9.71%;--h:5.25%;--bx:50%;--by:100%" aria-hidden="true"><span class="mark__n">3</span></span>
                   </div>
-                  <figcaption class="evidence__bar"><span>Google Ads keywords view, April to May 2026</span><span class="evidence__hint" aria-hidden="true">Full size</span></figcaption>
+                  <figcaption class="evidence__bar"><span data-fr="Vue des mots-clés Google Ads, avril-mai 2026">Google Ads keywords view, April to May 2026</span><span class="evidence__hint" aria-hidden="true" data-fr="Agrandir">Full size</span></figcaption>
                 </figure>
                 <div class="look">
-                  <h5 class="look__title">What to look for</h5>
+                  <h5 class="look__title" data-fr="À observer">What to look for</h5>
                   <ol class="look__list" role="list" data-look>
-                    <li data-mark="1">Clicks start in mid-May and reach about 300 a day.</li>
-                    <li data-mark="2">Quality Score 10/10 on the two main keywords, with all three parts above average.</li>
-                    <li data-mark="3">Top keyword: 30.43 conversions at €3.04 each.</li>
+                    <li data-mark="1" data-fr="Les clics démarrent à la mi-mai et atteignent environ 300 par jour.">Clicks start in mid-May and reach about 300 a day.</li>
+                    <li data-mark="2" data-fr="Niveau de qualité de 10/10 sur les deux principaux mots-clés, avec ses trois composantes supérieures à la moyenne.">Quality Score 10/10 on the two main keywords, with all three parts above average.</li>
+                    <li data-mark="3" data-fr="Meilleur mot-clé&nbsp;: 30,43 conversions à 3,04&nbsp;€ chacune.">Top keyword: 30.43 conversions at €3.04 each.</li>
                   </ol>
                 </div>
               </div>
@@ -208,41 +227,41 @@
           <header class="chapter__head">
             <h3 class="chapter__title" id="freelance-title"><img class="chapter__logo" src="images/logo-freelance.png" width="120" height="120" alt="">Freelance</h3>
             <div class="role">
-              <p class="role__title">Digital Marketing Freelancer</p>
-              <p class="role__dates">Sep 2023 – Jun 2025</p>
-              <p class="role__org">Self-employed, remote</p>
+              <p class="role__title" data-fr="Freelance en marketing digital">Digital Marketing Freelancer</p>
+              <p class="role__dates" data-fr="sept. 2023 – juin 2025">Sep 2023 – Jun 2025</p>
+              <p class="role__org" data-fr="Indépendant, à distance">Self-employed, remote</p>
             </div>
-            <p class="chapter__intro">SEO for client websites with Semrush and Ahrefs, and Google Ads work on client accounts.</p>
+            <p class="chapter__intro" data-fr="SEO de sites clients avec Semrush et Ahrefs, et missions Google Ads sur des comptes clients.">SEO for client websites with Semrush and Ahrefs, and Google Ads work on client accounts.</p>
           </header>
 
           <section class="case" aria-labelledby="case-seo" data-scope>
             <div class="case__text">
-              <h4 class="case__title" id="case-seo">SEO for a website with 1M visits in six months</h4>
+              <h4 class="case__title" id="case-seo" data-fr="SEO d’un site à 1&nbsp;million de visites en six mois">SEO for a website with 1M visits in six months</h4>
               <dl class="case__facts">
-                <div><dt>Period</dt><dd>June – November 2024</dd></div>
-                <div><dt>Tools</dt><dd>Semrush, Ahrefs</dd></div>
-                <div><dt>Data</dt><dd>Semrush estimates</dd></div>
+                <div><dt data-fr="Période">Period</dt><dd data-fr="juin – novembre 2024">June – November 2024</dd></div>
+                <div><dt data-fr="Outils">Tools</dt><dd>Semrush, Ahrefs</dd></div>
+                <div><dt data-fr="Données">Data</dt><dd data-fr="Estimations Semrush">Semrush estimates</dd></div>
               </dl>
-              <p>One of my clients’ websites I looked after for SEO. Semrush estimates 1M visits over the period, and monthly unique visitors grew from 87.9K in June to 158.5K in November.</p>
+              <p data-fr="L’un des sites clients dont j’ai géré le SEO. Semrush estime le trafic à 1&nbsp;million de visites sur la période, et le nombre de visiteurs uniques mensuels est passé de 87,9&nbsp;k en juin à 158,5&nbsp;k en novembre.">One of my clients’ websites I looked after for SEO. Semrush estimates 1M visits over the period, and monthly unique visitors grew from 87.9K in June to 158.5K in November.</p>
               <!-- Worth adding one sentence on what you changed on this site (pages rewritten, technical fixes, links). -->
             </div>
             <div class="case__evidence">
               <figure class="evidence">
                 <div class="shot">
-                  <button class="shot__btn" type="button" data-zoom data-caption="Semrush Traffic Analytics, June to November 2024. The site name is blurred.">
-                    <img src="images/semrush.png" width="1116" height="592" loading="lazy" decoding="async" alt="Semrush Traffic Analytics for June to November 2024: 1M visits and unique visitors rising from about 88K to 159K a month.">
-                    <span class="sr-only">Open full size</span>
+                  <button class="shot__btn" type="button" data-zoom data-caption="Semrush Traffic Analytics, June to November 2024. The site name is blurred." data-fr-caption="Semrush Traffic Analytics, de juin à novembre 2024. Le nom du site est flouté.">
+                    <img src="images/semrush.png" width="1116" height="592" loading="lazy" decoding="async" alt="Semrush Traffic Analytics for June to November 2024: 1M visits and unique visitors rising from about 88K to 159K a month." data-fr-alt="Semrush Traffic Analytics, de juin à novembre 2024&nbsp;: 1&nbsp;million de visites et un nombre de visiteurs uniques mensuels passé d’environ 88&nbsp;k à 159&nbsp;k.">
+                    <span class="sr-only" data-fr="Afficher en grand">Open full size</span>
                   </button>
                   <span class="mark" data-mark="1" style="--x:2.33%;--y:33.78%;--w:11.11%;--h:10.47%" aria-hidden="true"><span class="mark__n">1</span></span>
                   <span class="mark" data-mark="2" style="--x:3.41%;--y:61.99%;--w:29.03%;--h:4.39%" aria-hidden="true"><span class="mark__n">2</span></span>
                 </div>
-                <figcaption class="evidence__bar"><span>Semrush Traffic Analytics</span><span class="evidence__hint" aria-hidden="true">Full size</span></figcaption>
+                <figcaption class="evidence__bar"><span>Semrush Traffic Analytics</span><span class="evidence__hint" aria-hidden="true" data-fr="Agrandir">Full size</span></figcaption>
               </figure>
               <div class="look">
-                <h5 class="look__title">What to look for</h5>
+                <h5 class="look__title" data-fr="À observer">What to look for</h5>
                 <ol class="look__list" role="list" data-look>
-                  <li data-mark="1">Visits: 1M over the six months, 72% of them on mobile.</li>
-                  <li data-mark="2">Unique visitors up 80.4% between June and November 2024.</li>
+                  <li data-mark="1" data-fr="Visites&nbsp;: 1&nbsp;million sur les six mois, dont 72&nbsp;% sur mobile.">Visits: 1M over the six months, 72% of them on mobile.</li>
+                  <li data-mark="2" data-fr="Visiteurs uniques&nbsp;: +80,4&nbsp;% entre juin et novembre 2024.">Unique visitors up 80.4% between June and November 2024.</li>
                 </ol>
               </div>
             </div>
@@ -250,33 +269,33 @@
 
           <section class="case" aria-labelledby="case-rsa" data-scope>
             <div class="case__text">
-              <h4 class="case__title" id="case-rsa">Responsive search ads rewritten to Excellent</h4>
+              <h4 class="case__title" id="case-rsa" data-fr="Annonces responsives réécrites&nbsp;: efficacité «&nbsp;Excellente&nbsp;»">Responsive search ads rewritten to Excellent</h4>
               <dl class="case__facts">
-                <div><dt>Channel</dt><dd>Google Ads, Search</dd></div>
-                <div><dt>My part</dt><dd>Copy and assets</dd></div>
+                <div><dt data-fr="Canal">Channel</dt><dd>Google Ads, Search</dd></div>
+                <div><dt data-fr="Mon rôle">My part</dt><dd data-fr="Rédaction et composants">Copy and assets</dd></div>
               </dl>
-              <p>To improve a client's Google Ads results, I rewrote their responsive search ads, mixing Google's suggestions with my own copy: 15 distinct headlines built on the keywords people search for, new descriptions and more sitelinks. Ad Strength went up to Excellent.</p>
-              <p>Ad Strength scores how varied and relevant the assets are, not how the ad performs, so I use it as a quality check on the copy and judge the ads on conversions.</p>
+              <p data-fr="Pour améliorer les résultats Google Ads d’un client, j’ai réécrit ses annonces responsives sur le Réseau de Recherche en combinant les suggestions de Google et mes propres textes&nbsp;: 15 titres distincts construits autour des mots-clés recherchés par les internautes, de nouvelles descriptions et davantage de liens annexes. L’efficacité de l’annonce est passée à «&nbsp;Excellente&nbsp;».">To improve a client's Google Ads results, I rewrote their responsive search ads, mixing Google's suggestions with my own copy: 15 distinct headlines built on the keywords people search for, new descriptions and more sitelinks. Ad Strength went up to Excellent.</p>
+              <p data-fr="L’efficacité de l’annonce évalue la variété et la pertinence des composants, pas les performances de l’annonce. Je m’en sers donc comme contrôle qualité des textes, et je juge les annonces sur leurs conversions.">Ad Strength scores how varied and relevant the assets are, not how the ad performs, so I use it as a quality check on the copy and judge the ads on conversions.</p>
             </div>
             <div class="case__evidence">
               <figure class="evidence">
                 <div class="shot">
-                  <button class="shot__btn" type="button" data-zoom data-caption="Responsive search ad in the Google Ads editor. Final URL and ad preview are blurred.">
-                    <img src="images/ad-strength.png" width="893" height="673" loading="lazy" decoding="async" alt="Google Ads ad editor showing Ad strength: Excellent, all five suggestions ticked and 15 of 15 headlines used.">
-                    <span class="sr-only">Open full size</span>
+                  <button class="shot__btn" type="button" data-zoom data-caption="Responsive search ad in the Google Ads editor. Final URL and ad preview are blurred." data-fr-caption="Annonce responsive sur le Réseau de Recherche dans l’éditeur d’annonces Google Ads. L’URL finale et l’aperçu de l’annonce sont floutés.">
+                    <img src="images/ad-strength.png" width="893" height="673" loading="lazy" decoding="async" alt="Google Ads ad editor showing Ad strength: Excellent, all five suggestions ticked and 15 of 15 headlines used." data-fr-alt="Éditeur d’annonces Google Ads affichant une efficacité «&nbsp;Excellente&nbsp;», les cinq suggestions cochées et 15 titres sur 15 utilisés.">
+                    <span class="sr-only" data-fr="Afficher en grand">Open full size</span>
                   </button>
                   <span class="mark" data-mark="1" style="--x:45.13%;--y:4.16%;--w:13.44%;--h:6.24%" aria-hidden="true"><span class="mark__n">1</span></span>
                   <span class="mark" data-mark="2" style="--x:66.52%;--y:0.6%;--w:28.67%;--h:13.8%" aria-hidden="true"><span class="mark__n">2</span></span>
                   <span class="mark" data-mark="3" style="--x:4.82%;--y:81.13%;--w:13.66%;--h:3.86%" aria-hidden="true"><span class="mark__n">3</span></span>
                 </div>
-                <figcaption class="evidence__bar"><span>Google Ads ad editor</span><span class="evidence__hint" aria-hidden="true">Full size</span></figcaption>
+                <figcaption class="evidence__bar"><span data-fr="Éditeur d’annonces Google Ads">Google Ads ad editor</span><span class="evidence__hint" aria-hidden="true" data-fr="Agrandir">Full size</span></figcaption>
               </figure>
               <div class="look">
-                <h5 class="look__title">What to look for</h5>
+                <h5 class="look__title" data-fr="À observer">What to look for</h5>
                 <ol class="look__list" role="list" data-look>
-                  <li data-mark="1">Ad strength: Excellent, the highest rating.</li>
-                  <li data-mark="2">All five of Google's suggestions are done.</li>
-                  <li data-mark="3">Headlines: 15 out of 15 used.</li>
+                  <li data-mark="1" data-fr="Efficacité de l’annonce (Ad strength)&nbsp;: «&nbsp;Excellente&nbsp;», la meilleure note.">Ad strength: Excellent, the highest rating.</li>
+                  <li data-mark="2" data-fr="Les cinq suggestions de Google sont appliquées.">All five of Google's suggestions are done.</li>
+                  <li data-mark="3" data-fr="Titres&nbsp;: 15 sur 15 utilisés.">Headlines: 15 out of 15 used.</li>
                 </ol>
               </div>
             </div>
@@ -288,44 +307,44 @@
           <header class="chapter__head">
             <h3 class="chapter__title" id="getzem-title"><img class="chapter__logo" src="images/logo-getzem.png" width="120" height="120" alt="">Getzem Secure</h3>
             <div class="role">
-              <p class="role__title">Marketing Coordinator (work-study)</p>
-              <p class="role__dates">Mar 2022 – Jul 2023</p>
-              <p class="role__org">DoCaret, Paris | for Getzem Secure, the group's B2B cybersecurity subsidiary</p>
+              <p class="role__title" data-fr="Coordinateur marketing (alternance)">Marketing Coordinator (work-study)</p>
+              <p class="role__dates" data-fr="mars 2022 – juil. 2023">Mar 2022 – Jul 2023</p>
+              <p class="role__org" data-fr="DoCaret, Paris | pour Getzem Secure, la filiale de cybersécurité B2B du groupe">DoCaret, Paris | for Getzem Secure, the group's B2B cybersecurity subsidiary</p>
             </div>
-            <p class="chapter__intro">Getzem Secure trains company staff to spot cyber threats, with e-learning, serious games and phishing simulations. I worked on its content, videos and lead generation while finishing my Master's.</p>
-            <ul class="tally" aria-label="Other work at Getzem">
-              <li><strong>20+</strong> promo videos for training modules</li>
-              <li><strong>30</strong> blog posts and a monthly newsletter</li>
-              <li><strong>6</strong> webinars on security awareness</li>
-              <li><strong>20+</strong> qualified leads tracked in HubSpot</li>
+            <p class="chapter__intro" data-fr="Getzem Secure forme les salariés des entreprises à repérer les cybermenaces, grâce à l’e-learning, aux serious games et aux simulations de phishing. J’y ai travaillé sur les contenus, les vidéos et la génération de leads, tout en terminant mon master.">Getzem Secure trains company staff to spot cyber threats, with e-learning, serious games and phishing simulations. I worked on its content, videos and lead generation while finishing my Master's.</p>
+            <ul class="tally" aria-label="Other work at Getzem" data-fr-aria-label="Autres réalisations chez Getzem">
+              <li><strong>20+</strong> <span data-fr="vidéos promotionnelles pour des modules de formation">promo videos for training modules</span></li>
+              <li><strong>30</strong> <span data-fr="articles de blog et une newsletter mensuelle">blog posts and a monthly newsletter</span></li>
+              <li><strong>6</strong> <span data-fr="webinaires de sensibilisation à la sécurité">webinars on security awareness</span></li>
+              <li><strong>20+</strong> <span data-fr="leads qualifiés suivis dans HubSpot">qualified leads tracked in HubSpot</span></li>
             </ul>
           </header>
 
           <section class="case" aria-labelledby="case-deck">
             <div class="case__text">
-              <h4 class="case__title" id="case-deck">Spanish deck for European Cybersecurity Month</h4>
+              <h4 class="case__title" id="case-deck" data-fr="Présentation en espagnol pour le Mois européen de la cybersécurité">Spanish deck for European Cybersecurity Month</h4>
               <dl class="case__facts">
-                <div><dt>Date</dt><dd>October 2022</dd></div>
-                <div><dt>Language</dt><dd>Spanish</dd></div>
-                <div><dt>Length</dt><dd>7 slides</dd></div>
+                <div><dt>Date</dt><dd data-fr="octobre 2022">October 2022</dd></div>
+                <div><dt data-fr="Langue">Language</dt><dd data-fr="Espagnol">Spanish</dd></div>
+                <div><dt data-fr="Format">Length</dt><dd data-fr="7 diapositives">7 slides</dd></div>
               </dl>
-              <p>For European Cybersecurity Month 2022, I built this deck to present Getzem's security-awareness offer to a Spanish-speaking audience: who the company is, what it sells and how the managed service works.</p>
+              <p data-fr="Pour le Mois européen de la cybersécurité 2022, j’ai conçu ce support afin de présenter à un public hispanophone l’offre de Getzem en matière de sensibilisation à la sécurité&nbsp;: qui est l’entreprise, ce qu’elle vend et comment fonctionne le service managé.">For European Cybersecurity Month 2022, I built this deck to present Getzem's security-awareness offer to a Spanish-speaking audience: who the company is, what it sells and how the managed service works.</p>
             </div>
             <div class="case__evidence">
               <div class="evidence deck" data-deck>
-                <div class="deck__track" tabindex="0" role="region" aria-label="Slides, use the arrow keys to move">
-                  <figure class="deck__slide shot" aria-label="Slide 1 of 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 1 of 7"><img src="images/getzem/slide-1.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Cover: Getzem Secure, its three services (consulting, training, managed services) and the title, staff awareness of information security."><span class="sr-only">Open full size</span></button></figure>
-                  <figure class="deck__slide shot" aria-label="Slide 2 of 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 2 of 7"><img src="images/getzem/slide-2.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Getzem's three activities: instructional design, digital marketing and security expertise."><span class="sr-only">Open full size</span></button></figure>
-                  <figure class="deck__slide shot" aria-label="Slide 3 of 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 3 of 7"><img src="images/getzem/slide-3.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Key figures: more than 380,000 people trained or certified, more than 10 years of experience, more than 140 training modules in 13 languages, next to client logos."><span class="sr-only">Open full size</span></button></figure>
-                  <figure class="deck__slide shot" aria-label="Slide 4 of 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 4 of 7"><img src="images/getzem/slide-4.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Who we are: four strengths, from a team of experts to ready-to-use awareness solutions."><span class="sr-only">Open full size</span></button></figure>
-                  <figure class="deck__slide shot" aria-label="Slide 5 of 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 5 of 7"><img src="images/getzem/slide-5.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Two ways to buy: from the catalogue, or as a turnkey managed service."><span class="sr-only">Open full size</span></button></figure>
-                  <figure class="deck__slide shot" aria-label="Slide 6 of 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 6 of 7"><img src="images/getzem/slide-6.webp" width="1600" height="900" loading="lazy" decoding="async" alt="The catalogue: serious games, educational videos, e-learning, training workshops, phishing tests and mobile learning."><span class="sr-only">Open full size</span></button></figure>
-                  <figure class="deck__slide shot" aria-label="Slide 7 of 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 7 of 7"><img src="images/getzem/slide-7.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Managed services: audit and consulting, then segmentation, planning, pilot and regular reviews."><span class="sr-only">Open full size</span></button></figure>
+                <div class="deck__track" tabindex="0" role="region" aria-label="Slides, use the arrow keys to move" data-fr-aria-label="Diapositives, utilisez les flèches du clavier pour naviguer">
+                  <figure class="deck__slide shot" aria-label="Slide 1 of 7" data-fr-aria-label="Diapositive 1 sur 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 1 of 7" data-fr-caption="Diapositive 1 sur 7"><img src="images/getzem/slide-1.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Cover: Getzem Secure, its three services (consulting, training, managed services) and the title, staff awareness of information security." data-fr-alt="Couverture&nbsp;: Getzem Secure, ses trois services (conseil, formation, services managés) et le titre, consacré à la sensibilisation du personnel à la sécurité de l’information."><span class="sr-only" data-fr="Afficher en grand">Open full size</span></button></figure>
+                  <figure class="deck__slide shot" aria-label="Slide 2 of 7" data-fr-aria-label="Diapositive 2 sur 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 2 of 7" data-fr-caption="Diapositive 2 sur 7"><img src="images/getzem/slide-2.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Getzem's three activities: instructional design, digital marketing and security expertise." data-fr-alt="Les trois activités de Getzem&nbsp;: ingénierie pédagogique, marketing digital et expertise en sécurité."><span class="sr-only" data-fr="Afficher en grand">Open full size</span></button></figure>
+                  <figure class="deck__slide shot" aria-label="Slide 3 of 7" data-fr-aria-label="Diapositive 3 sur 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 3 of 7" data-fr-caption="Diapositive 3 sur 7"><img src="images/getzem/slide-3.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Key figures: more than 380,000 people trained or certified, more than 10 years of experience, more than 140 training modules in 13 languages, next to client logos." data-fr-alt="Chiffres clés&nbsp;: plus de 380&nbsp;000 personnes formées ou certifiées, plus de 10 ans d’expérience, plus de 140 modules de formation en 13 langues, à côté de logos de clients."><span class="sr-only" data-fr="Afficher en grand">Open full size</span></button></figure>
+                  <figure class="deck__slide shot" aria-label="Slide 4 of 7" data-fr-aria-label="Diapositive 4 sur 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 4 of 7" data-fr-caption="Diapositive 4 sur 7"><img src="images/getzem/slide-4.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Who we are: four strengths, from a team of experts to ready-to-use awareness solutions." data-fr-alt="Qui sommes-nous&nbsp;: quatre atouts, d’une équipe d’experts à des solutions de sensibilisation prêtes à l’emploi."><span class="sr-only" data-fr="Afficher en grand">Open full size</span></button></figure>
+                  <figure class="deck__slide shot" aria-label="Slide 5 of 7" data-fr-aria-label="Diapositive 5 sur 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 5 of 7" data-fr-caption="Diapositive 5 sur 7"><img src="images/getzem/slide-5.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Two ways to buy: from the catalogue, or as a turnkey managed service." data-fr-alt="Deux façons d’acheter&nbsp;: sur catalogue, ou sous forme de service managé clé en main."><span class="sr-only" data-fr="Afficher en grand">Open full size</span></button></figure>
+                  <figure class="deck__slide shot" aria-label="Slide 6 of 7" data-fr-aria-label="Diapositive 6 sur 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 6 of 7" data-fr-caption="Diapositive 6 sur 7"><img src="images/getzem/slide-6.webp" width="1600" height="900" loading="lazy" decoding="async" alt="The catalogue: serious games, educational videos, e-learning, training workshops, phishing tests and mobile learning." data-fr-alt="Le catalogue&nbsp;: serious games, vidéos pédagogiques, e-learning, ateliers de formation, tests de phishing et mobile learning."><span class="sr-only" data-fr="Afficher en grand">Open full size</span></button></figure>
+                  <figure class="deck__slide shot" aria-label="Slide 7 of 7" data-fr-aria-label="Diapositive 7 sur 7"><button class="shot__btn" type="button" data-zoom data-caption="Slide 7 of 7" data-fr-caption="Diapositive 7 sur 7"><img src="images/getzem/slide-7.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Managed services: audit and consulting, then segmentation, planning, pilot and regular reviews." data-fr-alt="Services managés&nbsp;: audit et conseil, puis segmentation, planification, phase pilote et bilans réguliers."><span class="sr-only" data-fr="Afficher en grand">Open full size</span></button></figure>
                 </div>
                 <div class="deck__controls">
-                  <button class="icon-btn" type="button" data-deck-prev aria-label="Previous slide"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                  <span class="deck__count" aria-live="polite">Slide <span data-deck-current>1</span> of 7</span>
-                  <button class="icon-btn" type="button" data-deck-next aria-label="Next slide"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <button class="icon-btn" type="button" data-deck-prev aria-label="Previous slide" data-fr-aria-label="Diapositive précédente"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <span class="deck__count" aria-live="polite"><span data-fr="Diapositive">Slide</span> <span data-deck-current>1</span> <span data-fr="sur">of</span> 7</span>
+                  <button class="icon-btn" type="button" data-deck-next aria-label="Next slide" data-fr-aria-label="Diapositive suivante"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 </div>
               </div>
             </div>
@@ -333,22 +352,22 @@
 
           <section class="case" aria-labelledby="case-video">
             <div class="case__text">
-              <h4 class="case__title" id="case-video">Promo video for a training module</h4>
+              <h4 class="case__title" id="case-video" data-fr="Vidéo promotionnelle d’un module de formation">Promo video for a training module</h4>
               <dl class="case__facts">
-                <div><dt>Format</dt><dd>Video</dd></div>
-                <div><dt>Audience</dt><dd>IT and security managers</dd></div>
+                <div><dt>Format</dt><dd data-fr="Vidéo">Video</dd></div>
+                <div><dt data-fr="Cible">Audience</dt><dd data-fr="Responsables informatique et sécurité">IT and security managers</dd></div>
               </dl>
-              <p>One of the 20+ promotional videos I produced for Getzem's training modules.</p>
+              <p data-fr="L’une des vidéos promotionnelles (plus de 20 au total) que j’ai réalisées pour les modules de formation de Getzem.">One of the 20+ promotional videos I produced for Getzem's training modules.</p>
             </div>
             <div class="case__evidence">
               <figure class="evidence">
                 <div class="video">
                   <video controls playsinline preload="none" width="1280" height="720" data-lazy-video>
                     <source src="videos/getzem-promo.mp4#t=0.1" type="video/mp4">
-                    <p>Your browser can't play this video. <a href="videos/getzem-promo.mp4">Download it (MP4)</a>.</p>
+                    <p><span data-fr="Votre navigateur ne peut pas lire cette vidéo.">Your browser can't play this video.</span> <a href="videos/getzem-promo.mp4" data-fr="Téléchargez-la (MP4)">Download it (MP4)</a>.</p>
                   </video>
                 </div>
-                <figcaption class="evidence__bar"><span>Promo video, Getzem Secure</span></figcaption>
+                <figcaption class="evidence__bar"><span data-fr="Vidéo promotionnelle, Getzem Secure">Promo video, Getzem Secure</span></figcaption>
               </figure>
             </div>
           </section>
@@ -359,21 +378,21 @@
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="wrap">
         <div class="section__head">
-          <h2 class="section__title" id="about-title">About</h2>
+          <h2 class="section__title" id="about-title" data-fr="À propos">About</h2>
         </div>
         <div class="about">
           <div class="about__bio">
-            <p>I'm a digital marketer from France, based in Paris. Most of my recent work is in Google Ads: checking the tracking, restructuring accounts, writing ads and reporting on what changed.</p>
-            <p>Before that I spent two years in B2B marketing and sales, so when I look at a campaign I also want to know what happened to the lead after the click.</p>
-            <p>I also co-organised conventions and webinars by handling logistics and promotion.</p>
+            <p data-fr="Je suis un spécialiste français du marketing digital, basé à Paris. Mes missions récentes portent surtout sur Google Ads&nbsp;: vérification du tracking, restructuration des comptes, rédaction des annonces et reporting sur les évolutions.">I'm a digital marketer from France, based in Paris. Most of my recent work is in Google Ads: checking the tracking, restructuring accounts, writing ads and reporting on what changed.</p>
+            <p data-fr="Auparavant, j’ai passé deux ans dans le marketing et la vente B2B. C’est pourquoi, quand j’analyse une campagne, je veux aussi savoir ce que devient le lead après le clic.">Before that I spent two years in B2B marketing and sales, so when I look at a campaign I also want to know what happened to the lead after the click.</p>
+            <p data-fr="J’ai également co-organisé des conventions et des webinaires, en prenant en charge la logistique et la promotion.">I also co-organised conventions and webinars by handling logistics and promotion.</p>
           </div>
           <dl class="profile">
-            <div><dt>Earlier roles</dt><dd>Big Data Consulting, Paris, 2020–21: B2B sales and marketing, work-study<br>Space Finders, London, 2019: digital marketing trainee</dd></div>
-            <div><dt>Education</dt><dd>Master's in Digital Marketing &amp; Innovation, IÉSEG School of Management, Paris, 2021–23</dd></div>
-            <div><dt>Tools</dt><dd>Google Ads (Search, Performance Max, Demand Gen, AI Max), GA4, Google Tag Manager, Looker Studio, Semrush, Ahrefs, HubSpot, Salesforce, WordPress, Premiere Pro</dd></div>
+            <div><dt data-fr="Expériences précédentes">Earlier roles</dt><dd><span data-fr="Big Data Consulting, Paris, 2020–2021&nbsp;: vente et marketing B2B, en alternance">Big Data Consulting, Paris, 2020–21: B2B sales and marketing, work-study</span><br><span data-fr="Space Finders, Londres, 2019&nbsp;: stagiaire en marketing digital">Space Finders, London, 2019: digital marketing trainee</span></dd></div>
+            <div><dt data-fr="Formation">Education</dt><dd data-fr="Master Digital Marketing &amp; Innovation, IÉSEG School of Management, Paris, 2021–2023">Master's in Digital Marketing &amp; Innovation, IÉSEG School of Management, Paris, 2021–23</dd></div>
+            <div><dt data-fr="Outils">Tools</dt><dd>Google Ads (Search, Performance Max, Demand Gen, AI Max), GA4, Google Tag Manager, Looker Studio, Semrush, Ahrefs, HubSpot, Salesforce, WordPress, Premiere Pro</dd></div>
             <div><dt>Certifications</dt><dd>Google Ads Search, Google Analytics, AI-Powered Performance Ads</dd></div>
-            <div><dt>Languages</dt><dd>French (native), English (C2), Spanish (B1)</dd></div>
-            <div><dt>Location</dt><dd>Paris, France. EU citizen.</dd></div>
+            <div><dt data-fr="Langues">Languages</dt><dd data-fr="Français (langue maternelle), anglais (C2), espagnol (B1)">French (native), English (C2), Spanish (B1)</dd></div>
+            <div><dt data-fr="Localisation">Location</dt><dd data-fr="Paris, France. Citoyen européen.">Paris, France. EU citizen.</dd></div>
           </dl>
         </div>
       </div>
@@ -384,10 +403,10 @@
         <div class="section__head">
           <h2 class="section__title" id="contact-title">Contact</h2>
         </div>
-        <p class="contact__lead">Let's connect on LinkedIn or email me. I'm available at your convenience.</p>
+        <p class="contact__lead" data-fr="Échangeons sur LinkedIn ou par e-mail. Je suis disponible à votre convenance.">Let's connect on LinkedIn or email me. I'm available at your convenience.</p>
         <div class="contact__actions">
-          <a class="btn btn--solid" href="mailto:alexandre.brunel123@gmail.com">Email me</a>
-          <button class="btn btn--outline" type="button" data-copy="alexandre.brunel123@gmail.com">Copy email address</button>
+          <a class="btn btn--solid" href="mailto:alexandre.brunel123@gmail.com" data-fr="M’écrire">Email me</a>
+          <button class="btn btn--outline" type="button" data-copy="alexandre.brunel123@gmail.com" data-fr="Copier l’adresse e-mail">Copy email address</button>
           <a class="btn btn--outline" href="https://www.linkedin.com/in/alexandre-brunel-b37252150/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
         <p class="contact__email">alexandre.brunel123@gmail.com <span class="contact__status" role="status" aria-live="polite"></span></p>
@@ -398,17 +417,17 @@
   <footer class="footer">
     <div class="wrap footer__inner">
       <p>© 2026 Alexandre Brunel</p>
-      <p>Screenshots come from real accounts. Advertiser names, keywords and URLs are blurred.</p>
+      <p data-fr="Captures d’écran issues de comptes réels. Les noms d’annonceurs, les mots-clés et les URL sont floutés.">Screenshots come from real accounts. Advertiser names, keywords and URLs are blurred.</p>
     </div>
   </footer>
 
-  <dialog class="lightbox" aria-label="Full-size view">
+  <dialog class="lightbox" aria-label="Full-size view" data-fr-aria-label="Vue agrandie">
     <div class="lightbox__bar">
       <p class="lightbox__caption" data-lightbox-caption></p>
-      <button class="btn btn--outline btn--small" type="button" data-lightbox-close>Close</button>
+      <button class="btn btn--outline btn--small" type="button" data-lightbox-close data-fr="Fermer">Close</button>
     </div>
     <div class="lightbox__stage" data-lightbox-stage></div>
-    <p class="lightbox__hint">Drag or scroll to move around the image.</p>
+    <p class="lightbox__hint" data-fr="Faites glisser ou faites défiler pour parcourir l’image.">Drag or scroll to move around the image.</p>
   </dialog>
 </body>
 </html>
