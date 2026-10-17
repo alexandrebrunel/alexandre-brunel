@@ -140,9 +140,22 @@
 
   /* ---------- Copy email address ---------- */
   const status = document.querySelector('.contact__status');
+  const say = (en, fr) => (root.lang.startsWith('fr') ? fr : en);
   document.querySelectorAll('[data-copy]').forEach((btn) => {
-    const label = btn.textContent;
+    let label = null;
+    let result = null;
+    let timer = null;
+    const feedback = () => {
+      btn.textContent = result ? say('Copied', 'Copié') : say('Copy failed', 'Échec de la copie');
+      if (status) status.textContent = result ? say('Email address copied.', 'Adresse e-mail copiée.') : '';
+    };
+    document.addEventListener('langchange', () => {
+      if (label === null) return;
+      label = btn.textContent;
+      feedback();
+    });
     btn.addEventListener('click', async () => {
+      if (label === null) label = btn.textContent;
       const text = btn.dataset.copy;
       let ok = false;
       try {
@@ -159,10 +172,12 @@
         try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
         area.remove();
       }
-      btn.textContent = ok ? 'Copied' : 'Copy failed';
-      if (status) status.textContent = ok ? 'Email address copied.' : '';
-      setTimeout(() => {
+      result = ok;
+      feedback();
+      clearTimeout(timer);
+      timer = setTimeout(() => {
         btn.textContent = label;
+        label = null;
         if (status) status.textContent = '';
       }, 2200);
     });
