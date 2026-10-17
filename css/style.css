@@ -166,7 +166,6 @@ button { font: inherit; color: inherit; }
 .topbar__nav a[aria-current="true"] { color: var(--navy); border-bottom-color: var(--navy); }
 
 @media (max-width: 639px) {
-  .topbar__cv { display: none; }
   .topbar__inner { gap: 12px; }
   .topbar__name { font-size: 0.8125rem; letter-spacing: 0.06em; }
   .topbar__nav a { padding: 6px 7px; font-size: 0.875rem; }
@@ -286,6 +285,13 @@ button { font: inherit; color: inherit; }
   font-size: clamp(1.75rem, 3.6vw, 2.5rem);
   font-weight: 800;
   line-height: 1.15;
+}
+.chapter__logo {
+  display: inline-block;
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.35em;
+  vertical-align: -0.17em;
 }
 .role {
   display: grid;
