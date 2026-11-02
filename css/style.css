@@ -214,13 +214,13 @@ button { font: inherit; color: inherit; }
 .hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(32px, 6vw, 88px);
+  gap: 0 clamp(32px, 6vw, 88px);
   align-items: center;
 }
 .hero__status {
+  grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px 20px;
+  gap: 20px;
   width: fit-content;
   max-width: 100%;
   margin: 0 0 clamp(16px, 2.4vw, 24px);
@@ -228,7 +228,7 @@ button { font: inherit; color: inherit; }
   border-radius: var(--radius);
   background: var(--navy);
   color: #fff;
-  font-size: 0.9375rem;
+  font-size: clamp(0.8125rem, 1.9vw, 0.9375rem);
   font-weight: 700;
   line-height: 1.45;
   list-style: none;
@@ -257,9 +257,7 @@ button { font: inherit; color: inherit; }
   font-weight: 600;
   line-height: 1.45;
 }
-.hero__sep { margin-left: 0.3em; color: var(--navy); font-weight: 400; }
-.hero__sep::before { content: "|"; }
-.hero__part { white-space: nowrap; }
+.hero__part { display: block; }
 .hero__intro {
   max-width: 56ch;
   margin: 18px 0 0;
@@ -282,8 +280,6 @@ button { font: inherit; color: inherit; }
   gap: 12px;
   margin-top: 28px;
 }
-.hero__cv { margin: 12px 0 0; font-size: 0.875rem; }
-.hero__cv a { font-weight: 600; }
 .hero__portrait {
   width: clamp(220px, 25vw, 320px);
   aspect-ratio: 4 / 5;
@@ -308,8 +304,8 @@ button { font: inherit; color: inherit; }
 @media (max-width: 719px) {
   .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .hero__portrait { order: -1; width: 128px; }
-  .hero__part { display: block; white-space: normal; }
-  .hero__sep { display: none; }
+  .hero__status { flex-direction: column; gap: 4px; margin-bottom: 0; font-size: 0.9375rem; }
+  .hero__status li { white-space: normal; }
   .hero__facts { display: grid; gap: 2px; }
   .hero__facts li + li::before { content: none; }
   .hero__actions .btn { flex: 1 1 auto; }
@@ -748,6 +744,6 @@ button { font: inherit; color: inherit; }
 }
 
 @media print {
-  .topbar, .skip, .deck__controls, .tabs__list, .contact__actions, .hero__actions, .hero__cv, .lightbox { display: none !important; }
+  .topbar, .skip, .deck__controls, .tabs__list, .contact__actions, .hero__actions, .lightbox { display: none !important; }
   .tabs__panel[hidden] { display: block !important; }
 }
