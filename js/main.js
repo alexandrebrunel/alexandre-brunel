@@ -125,7 +125,7 @@
     });
   }
 
-  /* ---------- Video: fetch the first frame only when it comes into view ---------- */
+  /* ---------- Video: fetch the metadata only when it comes into view ---------- */
   const video = document.querySelector('[data-lazy-video]');
   if (video && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {

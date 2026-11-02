@@ -595,7 +595,7 @@ button { font: inherit; color: inherit; }
   border-radius: 4px;
   background: var(--navy);
 }
-.video video { width: 100%; height: 100%; object-fit: contain; background: var(--navy); }
+.video video { width: 100%; height: 100%; object-fit: cover; background: var(--navy); }
 .video p { padding: 24px; color: #fff; }
 .video a { color: #fff; }
 
