@@ -217,6 +217,31 @@ button { font: inherit; color: inherit; }
   gap: clamp(32px, 6vw, 88px);
   align-items: center;
 }
+.hero__status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 clamp(16px, 2.4vw, 24px);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.45;
+  list-style: none;
+}
+.hero__status li { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.hero__status li::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--marker);
+}
 .hero__name {
   color: var(--navy);
   font-size: clamp(2.125rem, 6.2vw, 4.5rem);
@@ -232,7 +257,8 @@ button { font: inherit; color: inherit; }
   font-weight: 600;
   line-height: 1.45;
 }
-.hero__sep { margin: 0 0.3em; color: var(--navy); font-weight: 400; }
+.hero__sep { margin-left: 0.3em; color: var(--navy); font-weight: 400; }
+.hero__sep::before { content: "|"; }
 .hero__part { white-space: nowrap; }
 .hero__intro {
   max-width: 56ch;
@@ -256,6 +282,8 @@ button { font: inherit; color: inherit; }
   gap: 12px;
   margin-top: 28px;
 }
+.hero__cv { margin: 12px 0 0; font-size: 0.875rem; }
+.hero__cv a { font-weight: 600; }
 .hero__portrait {
   width: clamp(220px, 25vw, 320px);
   aspect-ratio: 4 / 5;
@@ -338,6 +366,17 @@ button { font: inherit; color: inherit; }
 .role__dates { font-weight: 700; text-align: right; white-space: nowrap; }
 .role__org { grid-column: 1 / -1; color: var(--ink-2); font-size: 0.9375rem; }
 .chapter__intro { max-width: 64ch; margin: 16px 0 0; }
+
+.quote {
+  max-width: 64ch;
+  margin: 24px 0 0;
+  padding: 2px 0 2px 20px;
+  border-left: 4px solid var(--marker);
+}
+.quote__text { margin: 0; }
+.quote__text p { margin: 0; font-weight: 500; }
+.quote__by { margin-top: 10px; color: var(--ink-2); font-size: 0.875rem; line-height: 1.5; }
+.quote__by strong { color: var(--navy); }
 
 @media (max-width: 559px) {
   .role { grid-template-columns: minmax(0, 1fr); }
@@ -709,6 +748,6 @@ button { font: inherit; color: inherit; }
 }
 
 @media print {
-  .topbar, .skip, .deck__controls, .tabs__list, .contact__actions, .hero__actions, .lightbox { display: none !important; }
+  .topbar, .skip, .deck__controls, .tabs__list, .contact__actions, .hero__actions, .hero__cv, .lightbox { display: none !important; }
   .tabs__panel[hidden] { display: block !important; }
 }
