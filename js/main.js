@@ -121,6 +121,50 @@
   /* ---------- Copy email address ---------- */
   const status = document.querySelector('.contact__status');
   const say = (en, fr) => (root.lang.startsWith('fr') ? fr : en);
+  const copyText = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      area.remove();
+      return ok;
+    }
+  };
+
+  /* ---------- Email links: many visitors have no mail app set up, so a mailto link
+     does nothing for them. If the browser keeps the focus after the click, copy the
+     address and say so. ---------- */
+  let mailTimer = null;
+  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const address = link.getAttribute('href').replace(/^mailto:/, '').split('?')[0];
+      let left = false;
+      const onLeave = () => { left = true; };
+      window.addEventListener('blur', onLeave, { once: true });
+      setTimeout(async () => {
+        window.removeEventListener('blur', onLeave);
+        if (left || document.hidden || !document.hasFocus()) return;
+        const ok = await copyText(address);
+        if (!status) return;
+        status.textContent = ok
+          ? say('No email app opened? The address is copied, paste it into your mail.', 'Aucune messagerie ne s’est ouverte ? L’adresse est copiée, collez-la dans votre messagerie.')
+          : say('No email app opened? Write to ' + address + '.', 'Aucune messagerie ne s’est ouverte ? Écrivez à ' + address + '.');
+        status.scrollIntoView({ block: 'nearest' });
+        clearTimeout(mailTimer);
+        mailTimer = setTimeout(() => { status.textContent = ''; }, 8000);
+      }, 1200);
+    });
+  });
+
   document.querySelectorAll('[data-copy]').forEach((btn) => {
     let label = null;
     let result = null;
@@ -136,23 +180,7 @@
     });
     btn.addEventListener('click', async () => {
       if (label === null) label = btn.textContent;
-      const text = btn.dataset.copy;
-      let ok = false;
-      try {
-        await navigator.clipboard.writeText(text);
-        ok = true;
-      } catch (e) {
-        const area = document.createElement('textarea');
-        area.value = text;
-        area.setAttribute('readonly', '');
-        area.style.position = 'fixed';
-        area.style.opacity = '0';
-        document.body.appendChild(area);
-        area.select();
-        try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
-        area.remove();
-      }
-      result = ok;
+      result = await copyText(btn.dataset.copy);
       feedback();
       clearTimeout(timer);
       timer = setTimeout(() => {
