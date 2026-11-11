@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-fr="Page introuvable | Alexandre Brunel">Page not found | Alexandre Brunel</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <link rel="preload" href="/fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    (function (d) {
+      d.classList.add('js');
+      var lang = 'en';
+      try {
+        var asked = new URLSearchParams(location.search).get('lang');
+        var browser = (navigator.language || '').slice(0, 2).toLowerCase() === 'fr' ? 'fr' : 'en';
+        lang = asked === 'fr' || asked === 'en' ? asked : (localStorage.getItem('lang') || browser);
+      } catch (e) {}
+      if (lang === 'fr') {
+        d.lang = 'fr';
+        d.classList.add('is-translating');
+        setTimeout(function () { d.classList.remove('is-translating'); }, 2500);
+      }
+    })(document.documentElement);
+  </script>
+  <script src="/js/lang.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="topbar__name" href="/">Alexandre Brunel</a>
+      <nav class="topbar__nav" aria-label="Sections">
+        <a href="/#work" data-fr="Projets">Work</a>
+        <a href="/#about" data-fr="À propos">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language" data-fr-aria-label="Langue">
+        <button class="lang__btn" type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="true">EN</button>
+        <button class="lang__btn" type="button" data-lang="fr" lang="fr" aria-label="Français" aria-pressed="false">FR</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="notfound">
+      <div class="wrap">
+        <p class="notfound__code" aria-hidden="true">404</p>
+        <h1 class="section__title" data-fr="Page introuvable">Page not found</h1>
+        <p data-fr="Cette page n’existe pas ou a été déplacée. Le portfolio, lui, est toujours à la même adresse.">This page doesn’t exist or has moved. The portfolio is still where it was.</p>
+        <a class="btn btn--solid" href="/" data-fr="Retour au portfolio">Back to the portfolio</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

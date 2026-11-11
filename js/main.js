@@ -1,6 +1,5 @@
 (() => {
   const root = document.documentElement;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- "What to look for": point at the matching highlight ---------- */
   document.querySelectorAll('[data-look]').forEach((list) => {
@@ -26,7 +25,7 @@
     });
   });
 
-  /* ---------- Before / after tabs ---------- */
+  /* ---------- Before / after tabs (side by side on wide screens, see CSS) ---------- */
   document.querySelectorAll('[data-tabs]').forEach((wrap) => {
     const tabs = Array.from(wrap.querySelectorAll('[role="tab"]'));
     const select = (tab, focus) => {
@@ -52,39 +51,17 @@
     select(tabs.find((t) => t.getAttribute('aria-selected') === 'true') || tabs[0], false);
   });
 
-  /* ---------- Slide viewer ---------- */
-  document.querySelectorAll('[data-deck]').forEach((deck) => {
-    const track = deck.querySelector('.deck__track');
-    const slides = track.children;
-    const prev = deck.querySelector('[data-deck-prev]');
-    const next = deck.querySelector('[data-deck-next]');
-    const current = deck.querySelector('[data-deck-current]');
-    const index = () => Math.round(track.scrollLeft / track.clientWidth);
-    const go = (i) => {
-      const target = Math.max(0, Math.min(slides.length - 1, i));
-      track.scrollTo({ left: target * track.clientWidth, behavior: reduceMotion ? 'auto' : 'smooth' });
-    };
-    const update = () => {
-      const i = index();
-      current.textContent = String(i + 1);
-      prev.disabled = i <= 0;
-      next.disabled = i >= slides.length - 1;
-    };
-    prev.addEventListener('click', () => go(index() - 1));
-    next.addEventListener('click', () => go(index() + 1));
-    track.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') { e.preventDefault(); go(index() + 1); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); go(index() - 1); }
-    });
-    let ticking = false;
-    track.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => { update(); ticking = false; });
-    }, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  });
+  /* ---------- Case reasoning: folded on phones, always open on wider screens ---------- */
+  const more = Array.from(document.querySelectorAll('details.more'));
+  if (more.length && window.matchMedia) {
+    const small = window.matchMedia('(max-width: 719px)');
+    const sync = () => more.forEach((d) => { d.open = !small.matches || d.hasAttribute('data-keep-open'); });
+    sync();
+    if (small.addEventListener) small.addEventListener('change', sync);
+    // Printing shows everything.
+    window.addEventListener('beforeprint', () => more.forEach((d) => { d.open = true; }));
+    window.addEventListener('afterprint', sync);
+  }
 
   /* ---------- Full-size view ---------- */
   const dialog = document.querySelector('.lightbox');
@@ -101,10 +78,9 @@
       img.removeAttribute('loading');
       inner.replaceWith(img);
       copy.querySelectorAll('.mark').forEach((m) => m.classList.remove('is-on'));
-      copy.removeAttribute('aria-label');
       stage.replaceChildren(copy);
       caption.textContent = btn.dataset.caption || '';
-      dialog.classList.toggle('is-slide', shot.classList.contains('deck__slide'));
+      dialog.classList.toggle('is-slide', shot.classList.contains('shot--slide'));
       opener = btn;
       root.classList.add('is-locked');
       dialog.showModal();
@@ -127,15 +103,19 @@
 
   /* ---------- Video: fetch the metadata only when it comes into view ---------- */
   const video = document.querySelector('[data-lazy-video]');
-  if (video && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        video.preload = 'metadata';
-        video.load();
-        io.disconnect();
-      }
-    }, { rootMargin: '300px' });
-    io.observe(video);
+  if (video) {
+    // The film belongs to Getzem Secure: no download button, no "Save video as" menu.
+    video.addEventListener('contextmenu', (e) => e.preventDefault());
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          video.preload = 'metadata';
+          video.load();
+          io.disconnect();
+        }
+      }, { rootMargin: '300px' });
+      io.observe(video);
+    }
   }
 
   /* ---------- Copy email address ---------- */
@@ -184,18 +164,24 @@
   });
 
   /* ---------- Top bar: mark the section in view ---------- */
-  const links = Array.from(document.querySelectorAll('.topbar__nav a'));
+  // The current section is the last one whose top has passed the upper part of the
+  // viewport. Nothing is marked while the hero is still the main thing on screen.
+  const links = Array.from(document.querySelectorAll('.topbar__nav a[href^="#"]'));
   const sections = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  if (sections.length && 'IntersectionObserver' in window) {
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        links.forEach((a) => {
-          if (a.getAttribute('href') === '#' + entry.target.id) a.setAttribute('aria-current', 'true');
-          else a.removeAttribute('aria-current');
-        });
+  if (sections.length) {
+    const update = () => {
+      const line = window.innerHeight * 0.4;
+      let current = null;
+      sections.forEach((s) => { if (s.getBoundingClientRect().top <= line) current = s; });
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom && window.scrollY > 0) current = sections[sections.length - 1];
+      links.forEach((a) => {
+        if (current && a.getAttribute('href') === '#' + current.id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach((s) => spy.observe(s));
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   }
 })();

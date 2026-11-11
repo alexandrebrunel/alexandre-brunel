@@ -1,12 +1,12 @@
 (() => {
   const root = document.documentElement;
   const CODES = { en: 'en-GB', fr: 'fr' };
-  const ATTRS = [['frAlt', 'alt'], ['frAriaLabel', 'aria-label'], ['frCaption', 'data-caption'], ['frHref', 'href']];
+  const ATTRS = [['frAlt', 'alt'], ['frAriaLabel', 'aria-label'], ['frCaption', 'data-caption'], ['frHref', 'href'], ['frContent', 'content']];
   const buttons = Array.from(document.querySelectorAll('[data-lang]'));
 
   const texts = Array.from(document.querySelectorAll('[data-fr]')).map((el) => ({ el, en: el.textContent }));
   const attrs = [];
-  document.querySelectorAll('[data-fr-alt], [data-fr-aria-label], [data-fr-caption], [data-fr-href]').forEach((el) => {
+  document.querySelectorAll('[data-fr-alt], [data-fr-aria-label], [data-fr-caption], [data-fr-href], [data-fr-content]').forEach((el) => {
     ATTRS.forEach(([key, name]) => {
       if (el.dataset[key] !== undefined) attrs.push({ el, key, name, en: el.getAttribute(name) });
     });
