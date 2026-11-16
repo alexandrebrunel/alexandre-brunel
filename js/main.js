@@ -1,7 +1,6 @@
 (() => {
   const root = document.documentElement;
 
-  /* ---------- Numbered notes: point at the matching highlight ---------- */
   const wireNotes = (list, scope) => {
     if (!scope) return;
     const marks = scope.querySelectorAll('.mark');
@@ -25,19 +24,16 @@
   };
   document.querySelectorAll('[data-look]').forEach((list) => wireNotes(list, list.closest('[data-scope]')));
 
-  /* ---------- Case reasoning: folded on phones, always open on wider screens ---------- */
   const more = Array.from(document.querySelectorAll('details.more'));
   if (more.length && window.matchMedia) {
     const small = window.matchMedia('(max-width: 719px)');
     const sync = () => more.forEach((d) => { d.open = !small.matches; });
     sync();
     if (small.addEventListener) small.addEventListener('change', sync);
-    // Printing shows everything.
     window.addEventListener('beforeprint', () => more.forEach((d) => { d.open = true; }));
     window.addEventListener('afterprint', sync);
   }
 
-  /* ---------- Full-size view ---------- */
   const dialog = document.querySelector('.lightbox');
   if (dialog && typeof dialog.showModal === 'function') {
     const stage = dialog.querySelector('[data-lightbox-stage]');
@@ -51,7 +47,6 @@
       const img = copy.querySelector('img');
       const inner = copy.querySelector('.shot__btn');
       img.removeAttribute('loading');
-      // The page shows a crop or a light version; the full-size view loads the whole file.
       if (img.dataset.full) {
         img.src = img.dataset.full;
         img.width = Number(img.dataset.fullWidth);
@@ -86,7 +81,6 @@
     document.querySelectorAll('[data-zoom]').forEach((btn) => {
       btn.addEventListener('click', () => open(btn));
     });
-    // The "Full view" label under a screenshot opens it too.
     document.querySelectorAll('[data-zoom-proxy]').forEach((label) => {
       label.addEventListener('click', () => {
         const figure = label.closest('figure');
@@ -107,10 +101,8 @@
     });
   }
 
-  /* ---------- Video: fetch the metadata only when it comes into view ---------- */
   const video = document.querySelector('[data-lazy-video]');
   if (video) {
-    // The film belongs to Getzem Secure: no download button, no "Save video as" menu.
     video.addEventListener('contextmenu', (e) => e.preventDefault());
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
@@ -124,7 +116,6 @@
     }
   }
 
-  /* ---------- Copy email address ---------- */
   const status = document.querySelector('.contact__status');
   const say = (en, fr) => (root.lang.startsWith('fr') ? fr : en);
   const copyText = async (text) => {
@@ -146,9 +137,6 @@
     }
   };
 
-  /* ---------- Email links: many visitors have no mail app set up, so a mailto link
-     does nothing for them. If the browser keeps the focus after the click, copy the
-     address and say so, next to the button that was clicked. ---------- */
   const mailTimers = new WeakMap();
   document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
     link.addEventListener('click', () => {
@@ -199,9 +187,6 @@
     });
   });
 
-  /* ---------- Top bar: mark the section in view ---------- */
-  // The current section is the last one whose top has passed the upper part of the
-  // viewport. Nothing is marked while the hero is still the main thing on screen.
   const links = Array.from(document.querySelectorAll('.topbar__nav a[href^="#"]'));
   const sections = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
   if (sections.length) {

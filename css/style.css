@@ -33,7 +33,6 @@
   --gutter: clamp(16px, 4vw, 40px);
   --topbar-h: 60px;
   --radius: 6px;
-  /* Montserrat's zero is about a third wider than its average letter: 54ch holds roughly 72 characters. */
   --measure: 54ch;
 }
 
@@ -132,7 +131,6 @@ button { font: inherit; color: inherit; }
 .btn--outline:hover { background: var(--navy); color: #fff; }
 .btn--small { min-height: 44px; padding: 0 16px; font-size: 0.875rem; }
 
-/* ---------- Top bar ---------- */
 .topbar {
   position: sticky;
   top: 0;
@@ -180,7 +178,6 @@ button { font: inherit; color: inherit; }
 .topbar__nav a:hover { color: var(--navy); }
 .topbar__nav a[aria-current="true"] { color: var(--navy); border-bottom-color: var(--navy); }
 @media (min-width: 720px) {
-  /* The bar's main action: contact stays one click away on every screen of the page. */
   .topbar__nav .topbar__cta,
   .topbar__nav .topbar__cta[aria-current="true"] {
     min-height: 44px;
@@ -238,7 +235,6 @@ button { font: inherit; color: inherit; }
   .topbar__nav a:first-child { padding-left: 0; }
 }
 
-/* ---------- Hero ---------- */
 .hero { padding-block: clamp(20px, 3vw, 36px) clamp(24px, 3.5vw, 40px); }
 
 .hero__grid {
@@ -295,7 +291,6 @@ button { font: inherit; color: inherit; }
   font-size: 0.9375rem;
   line-height: 1.25;
 }
-/* Thin dividers between facts; the one that would start a line is clipped by the list's edge. */
 .hero__facts li { margin-left: -1px; padding: 0 0.7em; border-left: 1px solid #9aa3b2; white-space: nowrap; }
 .hero__facts li:nth-child(-n+3) { color: var(--navy); font-weight: 700; }
 .hero__actions {
@@ -333,7 +328,6 @@ button { font: inherit; color: inherit; }
   object-fit: cover;
 }
 
-/* Results strip: part of the hero so the numbers show on the first screen */
 .proof {
   grid-area: proof;
   display: grid;
@@ -357,7 +351,6 @@ button { font: inherit; color: inherit; }
 .proof a:hover span { color: var(--navy); text-decoration: underline; text-underline-offset: 0.2em; }
 
 @media (max-width: 719px) {
-  /* Phones: name, offer and the four numbers come first; buttons and screening facts follow. */
   .hero__grid {
     grid-template-columns: 56px minmax(0, 1fr);
     grid-template-areas:
@@ -383,7 +376,6 @@ button { font: inherit; color: inherit; }
   .hero__facts { margin-top: 10px; font-size: 0.875rem; }
 }
 
-/* ---------- What I can take on ---------- */
 .offer {
   padding-block: clamp(22px, 3vw, 32px);
   border-block: 1px solid var(--line-soft);
@@ -426,7 +418,6 @@ button { font: inherit; color: inherit; }
   .offer__list li { padding-top: 8px; border-top-width: 1px; font-size: 0.9375rem; }
 }
 
-/* ---------- Sections ---------- */
 .section { padding-block: clamp(32px, 4.5vw, 52px); }
 .section__head { margin-bottom: clamp(22px, 3vw, 32px); }
 .section__title {
@@ -447,7 +438,6 @@ button { font: inherit; color: inherit; }
   line-height: 1.55;
 }
 
-/* Index of the cases: the whole Work section at a glance */
 .index__list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -484,7 +474,6 @@ button { font: inherit; color: inherit; }
   .index__list { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column; }
 }
 @media (max-width: 559px) {
-  /* One flowing line per case: number, client, result. */
   .index__list a { display: block; position: relative; padding: 11px 0 11px 1.7em; }
   .index__list a::before { position: absolute; left: 0; }
   .index__who::after { content: " · "; }
@@ -566,7 +555,6 @@ button { font: inherit; color: inherit; }
   white-space: nowrap;
 }
 
-/* Headline numbers for a case or a chapter */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -590,7 +578,6 @@ button { font: inherit; color: inherit; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* ---------- Case studies ---------- */
 .case {
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 7fr);
@@ -628,7 +615,6 @@ button { font: inherit; color: inherit; }
 .case__text p { max-width: var(--measure); }
 .case__text > p:last-child { margin-bottom: 0; }
 
-/* Problem, action, limits */
 .beats { display: grid; gap: 12px; margin: 0; }
 .beats dt {
   color: var(--navy);
@@ -652,7 +638,6 @@ button { font: inherit; color: inherit; }
   .case--wide .more .beats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(24px, 3vw, 40px); }
 }
 
-/* On phones each case shows its numbers and its problem; the rest folds away. */
 .more > summary { display: none; }
 @media (max-width: 719px) {
   .more > summary {
@@ -698,7 +683,6 @@ button { font: inherit; color: inherit; }
   box-shadow: 0 0 0 1px var(--line-soft);
   background: #fff;
 }
-/* A crop is shown at its real size, never stretched: the interface text stays readable. */
 .evidence--crop .shot,
 .evidence--side .shot { width: min(100%, var(--crop)); }
 .evidence--crop { width: fit-content; max-width: 100%; }
@@ -715,7 +699,6 @@ button { font: inherit; color: inherit; }
 .shot > img { width: 100%; border-radius: inherit; }
 .shot--slide { box-shadow: none; }
 .shot--slide img { aspect-ratio: 16 / 9; object-fit: cover; }
-/* Marks and notes that belong to the whole image only appear in the full-size view. */
 .evidence .mark--full,
 .evidence .only-full { display: none; }
 
@@ -723,14 +706,19 @@ button { font: inherit; color: inherit; }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px clamp(16px, 2vw, 24px);
+  align-items: stretch;
+}
+.evidence--side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr auto;
   align-items: start;
 }
 @media (min-width: 1100px) {
   .evidence--side {
-    display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    gap: 0 18px;
-    align-items: start;
+    grid-template-rows: auto 1fr auto;
+    column-gap: 18px;
   }
   .evidence--side .evidence__label,
   .evidence--side .evidence__bar { grid-column: 1 / -1; }
@@ -738,7 +726,6 @@ button { font: inherit; color: inherit; }
 }
 @media (max-width: 719px) {
   .pair { grid-template-columns: minmax(0, 1fr); }
-  /* Phones lead with the "after" view; the "before" view (a table of zeros) opens with the rest of the case. */
   .case:has(.more:not([open])) .pair > :first-child { display: none; }
 }
 
@@ -827,7 +814,6 @@ button { font: inherit; color: inherit; }
   border-radius: 2px;
 }
 
-/* Numbered notes that point at the marks on a screenshot */
 .legend {
   display: grid;
   gap: 6px;
@@ -860,7 +846,6 @@ button { font: inherit; color: inherit; }
 .evidence .legend--cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 12px; }
 .evidence .legend--cols .legend__wide { grid-column: 1 / -1; }
 
-/* Checklists used where there is no screenshot: tracking audit, account restructure */
 .audit__list { margin: 0; padding: 0; list-style: none; }
 .audit__list li { padding: 12px 4px; border-top: 1px solid var(--line-soft); }
 .audit__list li:first-child { padding-top: 4px; border-top: 0; }
@@ -889,16 +874,21 @@ button { font: inherit; color: inherit; }
 .video video { width: 100%; height: 100%; object-fit: cover; background: #fff; }
 .video p { padding: 24px; color: #fff; }
 
-/* Secondary cases: one row of compact cards */
 .cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px clamp(18px, 2.5vw, 28px);
-  align-items: start;
   margin-top: 18px;
 }
 .card { display: grid; gap: 12px; align-content: start; }
-.card .evidence { padding: 10px; }
+.card .evidence { display: flex; flex-direction: column; padding: 10px; }
+.card .evidence__bar { align-items: center; min-height: 32px; margin-top: auto; padding-top: 10px; box-sizing: content-box; }
+@media (min-width: 900px) {
+  .cards { grid-template-rows: repeat(4, auto); row-gap: 0; align-items: stretch; }
+  .card { grid-row: span 4; grid-template-rows: subgrid; gap: 0; }
+  .card__text { display: contents; }
+  .card .evidence { margin-bottom: 12px; }
+}
 .card .shot img { aspect-ratio: 16 / 9; object-fit: cover; object-position: left top; }
 .card__tag { margin: 0; color: var(--ink-2); font-size: 0.875rem; font-weight: 600; line-height: 1.4; }
 .card__title { margin: 2px 0 6px; font-size: 1.125rem; font-weight: 700; line-height: 1.3; }
@@ -911,7 +901,6 @@ button { font: inherit; color: inherit; }
   .card { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 }
 
-/* ---------- About ---------- */
 .about {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -939,7 +928,6 @@ button { font: inherit; color: inherit; }
   .profile div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
 
-/* ---------- Contact ---------- */
 .contact__lead {
   max-width: 44ch;
   color: var(--ink);
@@ -961,7 +949,6 @@ button { font: inherit; color: inherit; }
   .contact__actions .btn { flex: 1 1 auto; }
 }
 
-/* ---------- Footer ---------- */
 .footer {
   padding-block: 20px 24px;
   border-top: 1px solid var(--line);
@@ -994,7 +981,6 @@ button { font: inherit; color: inherit; }
   cursor: pointer;
 }
 
-/* ---------- Full-size view ---------- */
 .lightbox {
   width: 100%;
   height: 100%;
@@ -1035,7 +1021,6 @@ button { font: inherit; color: inherit; }
   overscroll-behavior: contain;
   padding: 24px clamp(12px, 3vw, 28px);
 }
-/* Fitted to the screen at every size, and never wider than the source file. */
 .lightbox__stage .shot {
   width: min(100%, var(--natural, 1180px));
   box-shadow: 0 0 0 1px var(--line), 0 12px 40px rgba(31, 56, 100, 0.14);
@@ -1047,7 +1032,6 @@ button { font: inherit; color: inherit; }
   .lightbox__hint { display: block; }
 }
 
-/* ---------- Consent banner (only shown when analytics is configured) ---------- */
 .consent {
   position: fixed;
   left: 12px;
@@ -1068,7 +1052,6 @@ button { font: inherit; color: inherit; }
 .consent__actions { display: flex; gap: 10px; margin-top: 12px; }
 .consent__actions .btn { flex: 1 1 0; min-height: 44px; padding: 0 12px; }
 
-/* ---------- Plain text pages (legal notice, 404) ---------- */
 .prose { max-width: var(--measure); }
 .prose h2 { margin: 2em 0 0.5em; color: var(--navy); font-size: 1.1875rem; line-height: 1.3; }
 .prose ul { margin: 0 0 1em; padding-left: 1.2em; }
@@ -1087,11 +1070,14 @@ button { font: inherit; color: inherit; }
   .more > summary { display: none !important; }
 }
 
-/* ---------- Phones: tighter rhythm, details one tap away ---------- */
 .more--profile { margin-top: 0; }
 @media (max-width: 719px) {
   .chapter + .chapter { margin-top: 32px; padding-top: 24px; }
   .case { margin-top: 24px; padding-top: 20px; gap: 16px; }
   .audit__list p { display: none; }
   .audit__list li { padding: 9px 4px; }
+}
+.card .evidence__bar > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (min-width: 1100px) {
+  .evidence--side .shot { width: var(--crop); }
 }

@@ -1,17 +1,3 @@
-/*
-  Measurement: Google Tag Manager + GA4, gated by Consent Mode v2.
-
-  How it works
-  - Set the container ID on the script tag: <script src="js/analytics.js" data-gtm-id="GTM-XXXXXXX" defer>.
-    While it is empty, nothing loads, no banner shows and no cookie is set.
-  - Consent defaults to "denied". Google Tag Manager is only loaded after the visitor
-    accepts, so no request goes to Google before consent (basic Consent Mode).
-  - The choice is kept in localStorage and can be changed from "Cookie settings" in the footer.
-  - Every interaction below is pushed to the dataLayer as a custom event. In GTM, create one
-    "Custom Event" trigger per name and a GA4 Event tag that forwards it.
-
-  Events: cv_download, email_click, email_copy, linkedin_click, lightbox_open, video_play, language_switch
-*/
 (() => {
   const script = document.currentScript;
   const GTM_ID = ((script && script.dataset.gtmId) || '').trim();
@@ -28,7 +14,6 @@
     analytics_storage: 'denied'
   });
 
-  /* ---------- Events (they only leave the browser once GTM is loaded) ---------- */
   const lang = () => (root.lang.startsWith('fr') ? 'fr' : 'en');
   const track = (event, params) => window.dataLayer.push(Object.assign({ event, page_language: lang() }, params || {}));
   const area = (el) => {
@@ -56,7 +41,6 @@
     video.addEventListener('play', () => track('video_play', { video: (video.currentSrc || '').split('/').pop() }), { once: true });
   });
 
-  /* ---------- Consent ---------- */
   if (!GTM_ID) return;
 
   const read = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };

@@ -3,8 +3,6 @@
   const buttons = Array.from(document.querySelectorAll('[data-lang]'));
   const remember = (lang) => { try { localStorage.setItem('lang', lang); } catch (e) {} };
 
-  /* The home page has one address per language (/ and /fr/): the switch is a pair of links.
-     Keep the visitor's choice and the section they were reading. */
   if (root.hasAttribute('data-other')) {
     buttons.forEach((link) => {
       link.addEventListener('click', (e) => {
@@ -20,8 +18,6 @@
     return;
   }
 
-  /* Single-address pages (legal notice, 404): the French text sits in data-fr attributes
-     and is swapped in place. */
   const CODES = { en: 'en-GB', fr: 'fr' };
   const ATTRS = [['frAlt', 'alt'], ['frAriaLabel', 'aria-label'], ['frCaption', 'data-caption'], ['frHref', 'href'], ['frContent', 'content']];
 
