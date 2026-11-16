@@ -1,9 +1,8 @@
 (() => {
   const root = document.documentElement;
 
-  /* ---------- "What to look for": point at the matching highlight ---------- */
-  document.querySelectorAll('[data-look]').forEach((list) => {
-    const scope = list.closest('[data-scope]');
+  /* ---------- Numbered notes: point at the matching highlight ---------- */
+  const wireNotes = (list, scope) => {
     if (!scope) return;
     const marks = scope.querySelectorAll('.mark');
     const items = list.querySelectorAll('li[data-mark]');
@@ -23,39 +22,14 @@
         show(pinned);
       });
     });
-  });
-
-  /* ---------- Before / after tabs (side by side on wide screens, see CSS) ---------- */
-  document.querySelectorAll('[data-tabs]').forEach((wrap) => {
-    const tabs = Array.from(wrap.querySelectorAll('[role="tab"]'));
-    const select = (tab, focus) => {
-      tabs.forEach((t) => {
-        const on = t === tab;
-        t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
-        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
-      });
-      if (focus) tab.focus();
-    };
-    tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => select(tab, false));
-      tab.addEventListener('keydown', (e) => {
-        let next = null;
-        if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
-        if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
-        if (e.key === 'Home') next = tabs[0];
-        if (e.key === 'End') next = tabs[tabs.length - 1];
-        if (next) { e.preventDefault(); select(next, true); }
-      });
-    });
-    select(tabs.find((t) => t.getAttribute('aria-selected') === 'true') || tabs[0], false);
-  });
+  };
+  document.querySelectorAll('[data-look]').forEach((list) => wireNotes(list, list.closest('[data-scope]')));
 
   /* ---------- Case reasoning: folded on phones, always open on wider screens ---------- */
   const more = Array.from(document.querySelectorAll('details.more'));
   if (more.length && window.matchMedia) {
     const small = window.matchMedia('(max-width: 719px)');
-    const sync = () => more.forEach((d) => { d.open = !small.matches || d.hasAttribute('data-keep-open'); });
+    const sync = () => more.forEach((d) => { d.open = !small.matches; });
     sync();
     if (small.addEventListener) small.addEventListener('change', sync);
     // Printing shows everything.
@@ -68,6 +42,7 @@
   if (dialog && typeof dialog.showModal === 'function') {
     const stage = dialog.querySelector('[data-lightbox-stage]');
     const caption = dialog.querySelector('[data-lightbox-caption]');
+    const notes = dialog.querySelector('[data-lightbox-notes]');
     let opener = null;
 
     const open = (btn) => {
@@ -76,10 +51,31 @@
       const img = copy.querySelector('img');
       const inner = copy.querySelector('.shot__btn');
       img.removeAttribute('loading');
+      // The page shows a crop or a light version; the full-size view loads the whole file.
+      if (img.dataset.full) {
+        img.src = img.dataset.full;
+        img.width = Number(img.dataset.fullWidth);
+        img.height = Number(img.dataset.fullHeight);
+      }
       inner.replaceWith(img);
+      if (copy.querySelector('.mark--full')) copy.querySelectorAll('.mark:not(.mark--full)').forEach((m) => m.remove());
       copy.querySelectorAll('.mark').forEach((m) => m.classList.remove('is-on'));
       stage.replaceChildren(copy);
       caption.textContent = btn.dataset.caption || '';
+
+      const figure = shot.closest('figure');
+      const legend = figure && figure.querySelector('.legend');
+      if (notes) {
+        notes.replaceChildren();
+        notes.hidden = !legend;
+        if (legend) {
+          const list = legend.cloneNode(true);
+          list.querySelectorAll('.is-on').forEach((li) => li.classList.remove('is-on'));
+          notes.append(list);
+          wireNotes(list, copy);
+        }
+      }
+
       dialog.classList.toggle('is-slide', shot.classList.contains('shot--slide'));
       opener = btn;
       root.classList.add('is-locked');
@@ -90,13 +86,23 @@
     document.querySelectorAll('[data-zoom]').forEach((btn) => {
       btn.addEventListener('click', () => open(btn));
     });
+    // The "Full view" label under a screenshot opens it too.
+    document.querySelectorAll('[data-zoom-proxy]').forEach((label) => {
+      label.addEventListener('click', () => {
+        const figure = label.closest('figure');
+        const btn = figure && figure.querySelector('[data-zoom]');
+        if (btn) btn.click();
+      });
+    });
     dialog.querySelector('[data-lightbox-close]').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', (e) => {
       if (e.target === dialog || e.target === stage) dialog.close();
     });
     dialog.addEventListener('close', () => {
       root.classList.remove('is-locked');
+      root.classList.remove('is-pointing');
       stage.replaceChildren();
+      if (notes) notes.replaceChildren();
       if (opener) opener.focus();
     });
   }
@@ -142,11 +148,13 @@
 
   /* ---------- Email links: many visitors have no mail app set up, so a mailto link
      does nothing for them. If the browser keeps the focus after the click, copy the
-     address and say so. ---------- */
-  let mailTimer = null;
+     address and say so, next to the button that was clicked. ---------- */
+  const mailTimers = new WeakMap();
   document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
     link.addEventListener('click', () => {
       const address = link.getAttribute('href').replace(/^mailto:/, '').split('?')[0];
+      const scope = link.closest('[data-mail-scope]');
+      const note = (scope && scope.querySelector('[data-mail-status]')) || status;
       let left = false;
       const onLeave = () => { left = true; };
       window.addEventListener('blur', onLeave, { once: true });
@@ -154,13 +162,13 @@
         window.removeEventListener('blur', onLeave);
         if (left || document.hidden || !document.hasFocus()) return;
         const ok = await copyText(address);
-        if (!status) return;
-        status.textContent = ok
+        if (!note) return;
+        note.textContent = ok
           ? say('No email app opened? The address is copied, paste it into your mail.', 'Aucune messagerie ne s’est ouverte ? L’adresse est copiée, collez-la dans votre messagerie.')
           : say('No email app opened? Write to ' + address + '.', 'Aucune messagerie ne s’est ouverte ? Écrivez à ' + address + '.');
-        status.scrollIntoView({ block: 'nearest' });
-        clearTimeout(mailTimer);
-        mailTimer = setTimeout(() => { status.textContent = ''; }, 8000);
+        note.scrollIntoView({ block: 'nearest' });
+        clearTimeout(mailTimers.get(note));
+        mailTimers.set(note, setTimeout(() => { note.textContent = ''; }, 8000));
       }, 1200);
     });
   });

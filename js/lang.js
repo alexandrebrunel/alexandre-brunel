@@ -1,8 +1,29 @@
 (() => {
   const root = document.documentElement;
+  const buttons = Array.from(document.querySelectorAll('[data-lang]'));
+  const remember = (lang) => { try { localStorage.setItem('lang', lang); } catch (e) {} };
+
+  /* The home page has one address per language (/ and /fr/): the switch is a pair of links.
+     Keep the visitor's choice and the section they were reading. */
+  if (root.hasAttribute('data-other')) {
+    buttons.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        if (link.getAttribute('aria-current') === 'true') { e.preventDefault(); return; }
+        remember(link.dataset.lang);
+        if (location.hash) {
+          e.preventDefault();
+          location.href = link.href.split('#')[0] + location.hash;
+        }
+      });
+    });
+    root.classList.remove('is-translating');
+    return;
+  }
+
+  /* Single-address pages (legal notice, 404): the French text sits in data-fr attributes
+     and is swapped in place. */
   const CODES = { en: 'en-GB', fr: 'fr' };
   const ATTRS = [['frAlt', 'alt'], ['frAriaLabel', 'aria-label'], ['frCaption', 'data-caption'], ['frHref', 'href'], ['frContent', 'content']];
-  const buttons = Array.from(document.querySelectorAll('[data-lang]'));
 
   const texts = Array.from(document.querySelectorAll('[data-fr]')).map((el) => ({ el, en: el.textContent }));
   const attrs = [];
@@ -29,7 +50,7 @@
       const lang = b.dataset.lang;
       if (lang === current) return;
       apply(lang);
-      try { localStorage.setItem('lang', lang); } catch (e) {}
+      remember(lang);
       try {
         const url = new URL(window.location.href);
         if (lang === 'fr') url.searchParams.set('lang', 'fr');
