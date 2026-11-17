@@ -1,16 +1,16 @@
 (() => {
   const root = document.documentElement;
   const buttons = Array.from(document.querySelectorAll('[data-lang]'));
-  const remember = (lang) => { try { localStorage.setItem('lang', lang); } catch (e) {} };
+  const remember = (lang) => { try { localStorage.setItem('lang', lang); return true; } catch (e) { return false; } };
 
   if (root.hasAttribute('data-other')) {
     buttons.forEach((link) => {
       link.addEventListener('click', (e) => {
         if (link.getAttribute('aria-current') === 'true') { e.preventDefault(); return; }
-        remember(link.dataset.lang);
-        if (location.hash) {
+        const saved = remember(link.dataset.lang);
+        if (!saved || location.hash) {
           e.preventDefault();
-          location.href = link.href.split('#')[0] + location.hash;
+          location.href = link.href.split('#')[0] + (saved ? '' : '?lang=' + link.dataset.lang) + location.hash;
         }
       });
     });
