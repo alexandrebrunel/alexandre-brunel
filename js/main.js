@@ -93,6 +93,7 @@
       if (e.target === dialog || e.target === stage) dialog.close();
     });
     dialog.addEventListener('close', () => {
+      if (dialog.open) return;
       root.classList.remove('is-locked');
       root.classList.remove('is-pointing');
       stage.replaceChildren();
